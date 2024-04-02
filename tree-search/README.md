@@ -3,15 +3,15 @@
 Welcome to our coding challenge! This exercise is designed to assess your problem-solving skills, coding expertise, and your ability to document your approach. Please follow the instructions carefully.
 
 ## Objective
-The goal is to create a function capable of identifying the shallowest duplicate node within a given tree structure. Your solution should be accompanied by unit tests to validate its correctness. This challenge can be undertaken using either JavaScript or Go.
+The goal is to create a function capable of identifying the shallowest duplicate node within a given tree structure. Your solution should be accompanied by unit tests to validate its correctness. This challenge can be undertaken using Go.
 
 ### Requirements
 1. **Functionality:** Implement a function named CheckDuplicateIDs. This function should:
     * Accept a tree as input.
     * Return the value and level of the shallowest duplicate node encountered in the tree.
-    * If no duplicates exist, the function should return null (or nil in Go) and 0, respectively.
+    * If no duplicates exist, the function should return nil and 0, respectively.
 2. **Documentation:** Describe the search algorithm you've chosen for the task, along with a discussion on its computational and space complexity.
-3. **Timing:** To indicate the start of the challenge, make an initial commit to your fork of the repository. The time of this commit marks the beginning of your work. The creation time of the pull request (PR) will be considered as the end time of your challenge. Please limit your work to a maximum of 2 hours.
+3. **Timing:** To indicate the start of the challenge, make an initial commit to your fork of the repository. The time of this commit marks the beginning of your work. The creation time of the pull request (PR) will be considered as the end time of your challenge. There is no time limit, but time taken will be taken into consideration.
 
 ### Instructions for Submission
 1. **Fork the Repository:** Locate the provided repository URL and create a fork to your personal GitHub account.
@@ -28,7 +28,7 @@ Your submission will be evaluated based on:
 
 * **Correctness:** Does the solution correctly identify the shallowest duplicate node (or lack thereof)?
 * **Efficiency:** How well does your solution perform, especially in terms of time and space complexity?
-* **Code Quality:** Is your code clean, well-organized, and documented?
+* **Code Quality:** Is your code clean, well-organized, documented, and tested?
 * **Algorithm Choice:** The rationale behind your choice of algorithm, including its computational and space complexity.
 
 We wish you the best of luck with this challenge and look forward to discussing your solution with you!

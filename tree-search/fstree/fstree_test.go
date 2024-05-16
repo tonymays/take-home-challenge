@@ -168,7 +168,7 @@ func Test_MarshalFSTree(t *testing.T) {
 	}
 }
 
-// / Test_CheckDuplicateIDs tests file system data to identify duplicate fs data nodes
+// Test_CheckDuplicateIDs tests file system data to identify duplicate fs data nodes
 func Test_CheckDuplicateIDs(t *testing.T) {
 	for name, test := range map[string]struct {
 		data           []FSData

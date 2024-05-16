@@ -14,11 +14,13 @@ func CheckDuplicateIDs(fsData []FSData) (*FSTree, int, error) {
 		return nil, 0, SentinelError("missing file system data")
 	}
 
+	// marshal to data we were given into a tree
 	_, duplicates, err := MarshalFSTree(fsData)
 	if err != nil {
 		return nil, 0, err
 	}
 
+	// check for duplicate nodes
 	shallowestLevel := 100000000000
 	foundAt := -1
 	for i, duplicate := range duplicates {
@@ -28,6 +30,7 @@ func CheckDuplicateIDs(fsData []FSData) (*FSTree, int, error) {
 		}
 	}
 
+	// return what found if we found anything
 	if foundAt > -1 {
 		fsTree := &FSTree{
 			ID:    duplicates[foundAt].ID,
@@ -39,6 +42,7 @@ func CheckDuplicateIDs(fsData []FSData) (*FSTree, int, error) {
 		return fsTree, shallowestLevel, nil
 	}
 
+	// let the world know we found nothing
 	return nil, 0, nil
 }
 
@@ -53,7 +57,7 @@ func MarshalFSTree(fsData []FSData) ([]FSTree, []FSDuplicateDataNode, error) {
 	// establish a FSDuplicateData slice
 	var duplicateData []FSDuplicateDataNode
 
-	// build a node tree
+	// build out the tree
 	checkTree := tree.Empty[*FSData]()
 	for _, data := range fsData {
 		item := data
@@ -70,7 +74,7 @@ func MarshalFSTree(fsData []FSData) ([]FSTree, []FSDuplicateDataNode, error) {
 		// find the parent
 		_, found := checkTree.Find(parentID)
 
-		// if we do have a root parent...
+		// if we do not have a root parent...
 		if !found {
 			// then create one
 			added, exists := checkTree.Add(parentID, 0, nil)
@@ -84,7 +88,7 @@ func MarshalFSTree(fsData []FSData) ([]FSTree, []FSDuplicateDataNode, error) {
 			}
 		}
 
-		// now lets start processing data node
+		// now lets start processing each data node
 		if _, found := checkTree.Find(nodeID); found {
 			// this means we have found a full duplicate node therefore ignore it here but append to the FSDuplicateData slice
 			duplicateData = append(duplicateData, FSDuplicateDataNode{

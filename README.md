@@ -15,6 +15,10 @@ use VSCode or another editor that allows you to run tests, testing this solution
 be as simple as opening the test file and running the test.  I choose this method since
 any tree solution integration with your platform would literally take this path.
 
+To run this test from the command line, do the following:
+cd to tree-search directory
+run go test ./...  -coverpkg=./...
+
 The package I choose allows you to choose the traverse method whether BFS or DFS.  So instead
 of forcing the tree traverse with one or the other, you can establish a choice which provides 
 flexibility, efficiency and the removal of potential technical debt.
@@ -25,7 +29,7 @@ consideration pending new requirements.
 
 The solution is perceived to be n(0).  A reading of the documentation does not discuss this so I am
 forced to assume.  The assumption would be benchmarked against other tree packages in the real world
-to ensure our development needs would be meet from a usage model of evaluation.
+to ensure our development needs would be meet from a usage model with evaluation.
 
 I will leave the choice of solution to your opinion.
 

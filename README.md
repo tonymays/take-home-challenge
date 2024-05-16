@@ -1,35 +1,52 @@
 Challenge: Find the shallowest duplicate value within a tree.
 
-I did notice the PRs on the other solutions and I took a moment to review them so as not
-to waste your time with another hand coded tree traverser looking for a duplicate.
+Ok.  So I pulled a Kobayashi Maru.  Today I felt like Captain Kirk.  I hope you guys are Ok with that.
 
-Today's go world relies heavily on well constructed go packages for the sake of 
-complete reusability with a minimum set of code risk or technical debt.
+The jest of my solution is to take in raw flat data and marshal it into a tree structure using
+a pre-built go package.  The marshaler will not allow duplicates to be added so they are captured
+and stored into a slice of struct that can later be examined for duplicate nodes with corresponding
+nesting levels.
 
-So I am going to implement the solution using a go package:
+After reviewing two other PRs, in your repo, which both provided a hand coded solution to the challenge,
+I choose not to provide a third.  So instead, I built out a small fstree (file system tree) package 
+that could be included within any of your platforms out of the box.
+
+Instead of hand coding a tree traverser, I used a tree package that takes in raw file system data 
+and places into a tree structure using the following package:
+
 https://pkg.go.dev/github.com/kingledion/go-tools@v0.6.0/tree
 
-Further, I am not going to provide a main.go file which will require you to 
-rely on the go test file and the tools provided by go to run individual tests.  If you
-use VSCode or another editor that allows you to run tests, testing this solution would
-be as simple as opening the test file and running the test.  I choose this method since
-any tree solution integration with your platform would literally take this path.
+Today's go world relies heavily on well constructed go packages for the sake of reusability with a minimum 
+set of code risk or technical debt.
 
-To run this test from the command line, do the following:
-cd to tree-search directory
-run go test ./...  -coverpkg=./...
+So I choose to alter the test a little in order to achieve another solution possibility.
 
-The package I choose allows you to choose the traverse method whether BFS or DFS.  So instead
-of forcing the tree traverse with one or the other, you can establish a choice which provides 
+The tree package that I employed does not allow duplicates to be added which allowed me
+to offload the duplicates into a data duplication slice that could be evaluated after the tree
+had been built by the MarshalFSTree(...) method.  This simplified the number of operations
+needed in order to capture the desired output: the most shallow offending duplicate node and the level
+at which it lived.
+
+Further, I did not need to provide a main.go file since I am providing a custom package containing the 
+tools along with the desired solution.  Thus, the built in tests is all you will have to test out the solution.  
+
+You can run these tests from command line by:
+1 - changing to the `tree-search` directory
+2 - run the `go test ./...  -coverpkg=./...` go command
+
+For convenience, you can also run these test from VSCode (or other editors) by loading the
+test file.
+
+Further, if a traverse method were needed for other reasons the package that I provide here will allow 
+you to choose between the BFS and DFS algorithms.  So instead of forcing the tree traverse 
+with one or the other; as in the other PRs I examined, you can establish a choice which provides 
 flexibility, efficiency and the removal of potential technical debt.
 
-I did not notice a requirement to determine a solution result where two nodes were found duplicated 
-at the same level of shallowness, so I am altering that requirement as a suggestion for 
-consideration pending new requirements.
-
 The solution is perceived to be n(0).  A reading of the documentation does not discuss this so I am
-forced to assume.  The assumption would be benchmarked against other tree packages in the real world
-to ensure our development needs would be meet from a usage model with evaluation.
+forced to assume.  This assumption would be benchmarked, in the real world, against other tree packages 
+to ensure our development needs were met with best tools available at the time of development.
 
-I will leave the choice of solution to your opinion.
+I can only hope you find my poor attempt to be Captain Kirk acceptable.
+
+I appreciate the opportunity.
 
